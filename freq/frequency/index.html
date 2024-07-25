@@ -130,52 +130,59 @@
                 <h3>
                     <li>
                         Most special characters are removed
-                        <li>
-                            Apostrophes are removed
-                            <li>
-                                Carriage returns are removed
-                                <li>
-                                    Dashes are replaced with spaces
-                                </h3>
-                                <h3>Post Processing:</h3>
-                                <h3>
-                                    <li>
-                                        Results that are less than 7 characters long are excluded*
-                                        <li>
-                                            Sequences that only occur once are excluded
-                                            <li>
-                                                Sub-sequences of larger sequences are excluded**
-                                            </h3>
-                                            <h3>*We don't include short results as there's little or no benefit in automating something that's just as quick to type manually</h3>
-                                            <h3>**We don't show you that "ipsum dolor" occurs three times, if it's already included in the larger sequence "Lorem ipsum dolor set".  The exception to this rule is when the sub-sequence occurs more often than the larger sequence, meaning it exists elsewhere in the text and should be considered its own entity.</h3>
-                                        </div>
-                                    </div>
-                                </body>
-                            </html>
-                            <script>
+                    </li>
+                    <li>
+                        Apostrophes are removed
+                    </li>
+                    <li>
+                        Carriage returns are removed
+                    </li>
+                    <li>
+                        Dashes are replaced with spaces
+                    </li>
+                </h3>
+                <h3>Post Processing:</h3>
+                <h3>
+                    <li>
+                        Results that are less than 7 characters long are excluded*
+                    </li>
+                    <li>
+                        Sequences that only occur once are excluded
+                    </li>
+                    <li>
+                        Sub-sequences of larger sequences are excluded**
+                    </li>
+                </h3>
+                <h3>*We don't include short results as there's little or no benefit in automating something that's just as quick to type manually</h3>
+                <h3>**We don't show you that "ipsum dolor" occurs three times, if it's already included in the larger sequence "Lorem ipsum dolor set".  The exception to this rule is when the sub-sequence occurs more often than the larger sequence, meaning it exists elsewhere in the text and should be considered its own entity.</h3>
+            </div>
+        </div>
+    </body>
+</html>
+<script>
 function convertText(inputText) {
 	var worker = new Worker("worker.js");
 
-		var results;
+	var results;
 
 	worker.addEventListener("message", function (e) {
-			results = e.data;
-  			console.log(e.data);
-  			outputTextArea.value = e.data;
+		results = e.data;
+		console.log(e.data);
+		outputTextArea.value = e.data;
 	});
 
-		worker.postMessage(inputText);
+	worker.postMessage(inputText);
 
-		//return results;
-	}
+	//return results;
+}
 
-	// Convert button behaviour
-	var convertButton = document.getElementById("convertButton");
+// Convert button behaviour
+var convertButton = document.getElementById("convertButton");
 
-  	convertButton.onclick = (e) => {
-		var inputTextArea = document.getElementById("inputTextArea");
-		var outputTextArea = document.getElementById("outputTextArea");
-		var inputText = inputTextArea.value;
-		convertText(inputTextArea.value);
+convertButton.onclick = (e) => {
+	var inputTextArea = document.getElementById("inputTextArea");
+	var outputTextArea = document.getElementById("outputTextArea");
+	var inputText = inputTextArea.value;
+	convertText(inputTextArea.value);
 };
-                            </script>
+</script>
