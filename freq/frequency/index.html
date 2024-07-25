@@ -2,99 +2,100 @@
     <head>
         <title>Frequency Extractor</title>
         <style type="text/css">
-			:root {
-  				box-sizing: border-box;
-			}
+            :root {
+                box-sizing: border-box;
+            }
 
-			@font-face {
-			    font-family: 'fredokalight';
-			    src: url('https://thannon.com/fredoka-variablefont_wdthwght-webfont.woff') format('woff');
-			    font-weight: normal;
-			    font-style: normal;
-			}
+            @font-face {
+                font-family: 'fredokalight';
+                src: url('https://thannon.com/fredoka-variablefont_wdthwght-webfont.woff') format('woff');
+                font-weight: normal;
+                font-style: normal;
+            }
 
-			body {
-			  margin: 0;
-			  padding: 1rem;
-			  max-width: 1200px;
-			  margin: 30px auto;
-			  background-color: #ededf3;
-			  color: #19191a;
-			  font-family: fredokalight;
-			}
+            body {
+                margin: 0;
+                padding: 1rem;
+                max-width: 1200px;
+                margin: 30px auto;
+                background-color: #ededf3;
+                color: #19191a;
+                font-family: fredokalight;
+            }
 
-			a {
-				color: #17aaff;
-				font-weight: bold;
-			}
+            a {
+                color: #17aaff;
+                font-weight: bold;
+            }
 
-			h1 {
-			  font-family: fredokalight;
-			  font-weight: normal;
-			  font-size: 1.2em;
-			  letter-spacing: 2px;
-			  color: #19191a;
-			  margin: 0px 0px 0px 0px;
-			}
+            h1 {
+                font-family: fredokalight;
+                font-weight: normal;
+                font-size: 1.2em;
+                letter-spacing: 2px;
+                color: #19191a;
+                margin: 0px 0px 0px 0px;
+            }
 
-			h2 {
-			  font-family: fredokalight;
-			  font-weight: normal;
-			  font-size: 1em;
-			  letter-spacing: 2px;
-			  margin-bottom: 0px;
-			}
+            h2 {
+                font-family: fredokalight;
+                font-weight: normal;
+                font-size: 1em;
+                letter-spacing: 2px;
+                margin-bottom: 0px;
+            }
 
-			h3 {
-			  font-family: fredokalight;
-			  font-weight: normal;
-			  font-size: 0.8em;
-			  letter-spacing: 1px;
-			  margin-top: 18px;
-			}
+            h3 {
+                font-family: fredokalight;
+                font-weight: normal;
+                font-size: 0.8em;
+                letter-spacing: 1px;
+                margin-top: 18px;
+            }
 
-			h4 {
-			  font-family: fredokalight;
-			  font-weight: normal;
-			  font-size: 0.8em;
-			  letter-spacing: 1px;
-			  margin-bottom: -10px;
-			}
+            h4 {
+                font-family: fredokalight;
+                font-weight: normal;
+                font-size: 0.8em;
+                letter-spacing: 1px;
+                margin-bottom: -10px;
+            }
 
-			textarea {
-				min-height: 200px;
-			}
+            textarea {
+                min-height: 200px;
+            }
 
+            .project {
+                margin: 50px 0px 0px 0px;
+            }
 
+            .container {
+                display: flex;
+                width: 100%;
+            }
 
-			.project {
-				margin: 50px 0px 0px 0px;
-			}
+            .column-1 {
+                flex-shrink: 0;
+                /* shrinks to 0 to apply 70% width*/
+                flex-basis: 53%;
+                /* sets initial width to 70%*/
+            }
 
-			.container {
-			  display: flex;
-			  width: 100%;
-			}
+            .box {
+                padding: 10px;
+                border: 0px;
+                margin: 1rem 1rem 3rem 3rem;
+            }
 
-			.column-1 {
-			  flex-shrink: 0; /* shrinks to 0 to apply 70% width*/
-			  flex-basis: 53%; /* sets initial width to 70%*/
-			}
+            @media only screen and (max-width: 900px) {
+                .container {
+                    flex-direction: column;
+                }
 
-			.box {
-			  padding: 10px;
-			  border: 0px;
-			  margin: 1rem 1rem 3rem 3rem;
-			}
-
-			@media only screen and (max-width: 900px) {
-			  .container {
-			    flex-direction: column;
-			  }
-
-			  .box {
-			    margin: 0 0 1rem;
-			  }
+                .box {
+                    margin: 0 0 1rem;
+                }
+            }
         </style>
     </head>
     <body>
@@ -121,7 +122,8 @@
             <div class="column-2 box">
                 <h2>How it works</h2>
                 <h3>Paste in source text from material you type a lot, e.g. if you're a medical typist you might paste in 50 Cardiology letters.</h3>
-                <h3>Click Start and the generator will extract the most common sequences of text from the material you provided.
+                <h3>
+                    Click Start and the generator will extract the most common sequences of text from the material you provided.
                     <span style="color:#f22057;font-weight:bold">Use this information to populate your text expander.</span>
                 </h3>
                 <h3>Pre Processing:</h3>
