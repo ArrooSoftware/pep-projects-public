@@ -1,0 +1,16 @@
+How it works
+Paste in source text from material you type a lot, e.g. if you're a medical typist you might paste in 50 Cardiology letters.
+Click Start and the generator will extract the most common sequences of text from the material you provided. Use this information to populate your text expander.
+Pre Processing:
+Most special characters are removed
+Apostrophes are removed
+Carriage returns are removed
+Dashes are replaced with spaces
+Post Processing:
+Results that are less than 7 characters long are excluded*
+Sequences that only occur once are excluded
+Sub-sequences of larger sequences are excluded**
+*We don't include short results as there's little or no benefit in automating something that's just as quick to type manually
+**We don't show you that "ipsum dolor" occurs three times, if it's already included in the larger sequence "Lorem ipsum dolor set". The exception to this rule is when the sub-sequence occurs more often than the larger sequence, meaning it exists elsewhere in the text and should be considered its own entity.
+
+**We don't show you that "ipsum dolor" occurs three times, if it's already included in the larger sequence "Lorem ipsum dolor set".

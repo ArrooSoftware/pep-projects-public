@@ -1,3 +1,17 @@
+function setDefaultInputText() {
+	var inputTextArea = document.getElementById("inputTextArea");
+
+	fetch("input_default.txt")
+		.then((response) => response.text())
+		.then((data) => {
+			inputTextArea.textContent = data;
+		});
+}
+
+window.addEventListener("load", function () {
+	setDefaultInputText();
+});
+
 function setIsBusy(isBusy) {
 	// Get elements.
 	var inputTextArea = document.getElementById("inputTextArea");
