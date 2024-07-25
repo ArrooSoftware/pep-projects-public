@@ -12,10 +12,20 @@
                     <progress></progress>
                     <textarea id="inputTextArea" style="width:100%;height:50%"></textarea>
                 </p>
-                <button class="convert-button" id="convertButton">
-                    <div class="message">Start</div>
-                    <!-- <div class="loader"></div> -->
-                </button>
+                <div>
+                    <fieldset>
+                        <legend>Choose options and Start</legend>
+                        <div>
+                            <label for="inputMinSegmentLength">Minimum Segment Length</label>
+                            <input type="number" min="0" max="15" value="7" class="slider" id="inputMinSegmentLength" name="inputMinSegmentLength">
+                        </div>
+
+                        <button class="convert-button" id="convertButton">
+                            <div class="message">Start</div>
+                            <!-- <div class="loader"></div> -->
+                        </button>
+                    </fieldset>
+                </div>
                 <p class="project">
                     <h2>Results:</h2>
                     <progress id="progressBar"></progress>

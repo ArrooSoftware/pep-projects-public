@@ -54,7 +54,8 @@ var convertButton = document.getElementById("convertButton");
 
 convertButton.onclick = (e) => {
 	var inputTextArea = document.getElementById("inputTextArea");
+	var inputMinSegmentLength = document.getElementById("inputMinSegmentLength");
 	var outputTextArea = document.getElementById("outputTextArea");
 	var inputText = inputTextArea.value;
-	convertText(inputTextArea.value, 7);
+	convertText(inputTextArea.value, inputMinSegmentLength.value);
 };
