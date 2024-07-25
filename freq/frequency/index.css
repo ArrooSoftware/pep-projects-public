@@ -59,6 +59,14 @@ h4 {
 
 textarea {
 	min-height: 200px;
+	min-width: 100%;
+}
+
+progress {
+	width: 100%;
+	pad: 0;
+	margin: 0;
+	opacity: 0;
 }
 
 .project {
