@@ -153,19 +153,16 @@
                                 </body>
                             </html>
                             <script>
-
-	function convertText(inputText)
-	{
-
-		var worker = new Worker('worker.js');
+function convertText(inputText) {
+	var worker = new Worker("worker.js");
 
 		var results;
 
-		worker.addEventListener('message', function(e) {
+	worker.addEventListener("message", function (e) {
 			results = e.data;
   			console.log(e.data);
   			outputTextArea.value = e.data;
-  		})
+	});
 
 		worker.postMessage(inputText);
 
@@ -180,5 +177,5 @@
 		var outputTextArea = document.getElementById("outputTextArea");
 		var inputText = inputTextArea.value;
 		convertText(inputTextArea.value);
-	}
+};
                             </script>
