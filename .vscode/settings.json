@@ -1,0 +1,9 @@
+{
+  "[html]": {
+    "editor.defaultFormatter": "NikolaosGeorgiou.html-fmt-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.formatOnSave": true
+}
