@@ -1,0 +1,196 @@
+ <html>
+	<head>
+		<title>Frequency Extractor</title>
+		<style type='text/css'>
+			:root {
+  				box-sizing: border-box;
+			}
+
+			@font-face {
+			    font-family: 'fredokalight';
+			    src: url('https://thannon.com/fredoka-variablefont_wdthwght-webfont.woff') format('woff');
+			    font-weight: normal;
+			    font-style: normal;
+			}
+			
+			body {
+			  margin: 0;
+			  padding: 1rem;
+			  max-width: 1200px;
+			  margin: 30px auto;
+			  background-color: #ededf3;
+			  color: #19191a;
+			  font-family: fredokalight;
+			}
+
+			a {
+				color: #17aaff;
+				font-weight: bold;
+			}
+
+			h1 {
+			  font-family: fredokalight;
+			  font-weight: normal;
+			  font-size: 1.2em;
+			  letter-spacing: 2px;
+			  color: #19191a;
+			  margin: 0px 0px 0px 0px;
+			}
+
+			h2 {
+			  font-family: fredokalight;
+			  font-weight: normal;
+			  font-size: 1em;
+			  letter-spacing: 2px;
+			  margin-bottom: 0px;
+			}
+
+			h3 {
+			  font-family: fredokalight;
+			  font-weight: normal;
+			  font-size: 0.8em;
+			  letter-spacing: 1px;
+			  margin-top: 18px;
+			}
+
+			h4 {
+			  font-family: fredokalight;
+			  font-weight: normal;
+			  font-size: 0.8em;
+			  letter-spacing: 1px;
+			  margin-bottom: -10px;
+			}
+			
+			textarea {
+				min-height: 200px;
+			}
+
+
+
+			.project {
+				margin: 50px 0px 0px 0px;
+			}
+
+			.container {
+			  display: flex;
+			  width: 100%;
+			}
+
+			.column-1 {
+			  flex-shrink: 0; /* shrinks to 0 to apply 70% width*/
+			  flex-basis: 53%; /* sets initial width to 70%*/			  
+			}
+
+			.box {
+			  padding: 10px;
+			  border: 0px;
+			  margin: 1rem 1rem 3rem 3rem;
+			}
+
+			@media only screen and (max-width: 900px) {
+			  .container {
+			    flex-direction: column;
+			  }
+
+			  .box {
+			    margin: 0 0 1rem;
+			  }
+
+
+		</style>
+	</head>
+
+
+
+<body>
+
+
+ <div class="container">
+      <div class="column-1 box">
+	        <h1>TEXT FREQUENCY GENERATOR</h1>
+
+			<p class="project">
+				  <h2>Enter Source Text:</h2><br />
+				  <textarea id="inputTextArea" style="width:100%;height:50%"></textarea>
+			</p>
+
+			<button class="convert-button" id="convertButton">
+				<div class="message">Start</div>
+				<!-- <div class="loader"></div> -->
+			</button>
+
+			<p class="project">
+				  <h2>Results:</h2><br />
+				  <textarea id="outputTextArea" style="width:100%;height:50%"></textarea>
+			</p>
+			<p />
+			<br />
+
+
+
+
+
+
+
+      </div>
+      <div class="column-2 box">
+        <h2>How it works</h2>
+        <h3>Paste in source text from material you type a lot, e.g. if you're a medical typist you might paste in 50 Cardiology letters.</h3>
+
+        <h3>Click Start and the generator will extract the most common sequences of text from the material you provided.  <span style="color:#f22057;font-weight:bold">Use this information to populate your text expander.</span></h3>
+
+		<h3>Pre Processing:</h3>
+		<h3>
+			<li>Most special characters are removed
+			<li>Apostrophes are removed
+			<li>Carriage returns are removed
+			<li>Dashes are replaced with spaces
+		</h3>
+
+		<h3>Post Processing:</h3>
+		<h3>
+			<li>Results that are less than 7 characters long are excluded*
+			<li>Sequences that only occur once are excluded
+			<li>Sub-sequences of larger sequences are excluded**
+		</h3>
+
+		<h3>*We don't include short results as there's little or no benefit in automating something that's just as quick to type manually</h3>
+		<h3>**We don't show you that "ipsum dolor" occurs three times, if it's already included in the larger sequence "Lorem ipsum dolor set".  The exception to this rule is when the sub-sequence occurs more often than the larger sequence, meaning it exists elsewhere in the text and should be considered its own entity.</h3>
+
+      </div>
+    </div>
+
+    </body>
+
+    </html>
+
+     <script>
+
+	function convertText(inputText)
+	{
+
+		var worker = new Worker('worker.js');
+		
+		var results;
+
+		worker.addEventListener('message', function(e) {
+			results = e.data;
+  			console.log(e.data);
+  			outputTextArea.value = e.data;
+  		})
+
+		worker.postMessage(inputText);
+
+		//return results;
+	}
+
+	// Convert button behaviour
+	var convertButton = document.getElementById("convertButton");
+
+  	convertButton.onclick = (e) => {
+		var inputTextArea = document.getElementById("inputTextArea");
+		var outputTextArea = document.getElementById("outputTextArea");
+		var inputText = inputTextArea.value;
+		convertText(inputTextArea.value);
+	}
+</script>
