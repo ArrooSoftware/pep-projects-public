@@ -1,6 +1,8 @@
 self.addEventListener("message", function (e) {
-	var message = e.data;
-	var minSegmentLength = 7;
+	var inputParams = JSON.parse(e.data);
+
+	var message = inputParams.message;
+	var minSegmentLength = inputParams.minSegmentLength;
 	var maxSentenceLength = 25;
 
 	var theKey = "";

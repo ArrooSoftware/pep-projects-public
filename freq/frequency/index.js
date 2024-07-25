@@ -29,7 +29,7 @@ function setIsBusy(isBusy) {
 	progressBar.style.opacity = isBusy ? 1.0 : 0.0;
 }
 
-function convertText(inputText) {
+function convertText(message, minSegmentLength) {
 	var worker = new Worker("worker.js");
 	setIsBusy(true);
 
@@ -42,7 +42,9 @@ function convertText(inputText) {
 		setIsBusy(false);
 	});
 
-	worker.postMessage(inputText);
+	var inputParams = JSON.stringify({ message, minSegmentLength });
+
+	worker.postMessage(inputParams);
 
 	//return results;
 }
@@ -54,5 +56,5 @@ convertButton.onclick = (e) => {
 	var inputTextArea = document.getElementById("inputTextArea");
 	var outputTextArea = document.getElementById("outputTextArea");
 	var inputText = inputTextArea.value;
-	convertText(inputTextArea.value);
+	convertText(inputTextArea.value, 7);
 };
