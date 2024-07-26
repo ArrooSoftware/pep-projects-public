@@ -3,6 +3,15 @@ self.addEventListener("message", function (e) {
 
 	var message = inputParams.message;
 	var minSegmentLength = inputParams.minSegmentLength;
+
+	result = getTextFrequency(message, minSegmentLength);
+
+	self.postMessage(result);
+
+	self.close();
+});
+
+function getTextFrequency(message, minSegmentLength) {
 	var maxSentenceLength = 25;
 
 	var theKey = "";
@@ -55,10 +64,8 @@ self.addEventListener("message", function (e) {
 	console.log("result: " + result);
 	//console.log("-" + text + "-");
 
-	self.postMessage(result);
-
-	self.close();
-});
+	return result;
+}
 
 function purgeSmallerDuplicates(result) {
 	//sort by longest to shortest key
