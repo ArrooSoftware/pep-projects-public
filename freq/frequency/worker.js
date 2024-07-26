@@ -4,14 +4,18 @@ self.addEventListener("message", function (e) {
 	var message = inputParams.message;
 	var minSegmentLength = inputParams.minSegmentLength;
 
-	result = getTextFrequency(message, minSegmentLength);
+	function reportProgress(outputParams) {
+		self.postMessage(JSON.stringify(outputParams));
 
-	self.postMessage(result);
+		if (outputParams.done) {
+			self.close();
+		}
+	}
 
-	self.close();
+	getTextFrequency(message, minSegmentLength, reportProgress);
 });
 
-function getTextFrequency(message, minSegmentLength) {
+function getTextFrequency(message, minSegmentLength, reportProgress) {
 	var maxSentenceLength = 25;
 
 	var theKey = "";
@@ -64,7 +68,7 @@ function getTextFrequency(message, minSegmentLength) {
 	console.log("result: " + result);
 	//console.log("-" + text + "-");
 
-	return result;
+	reportProgress({ result, doneRatio: 1, done: true });
 }
 
 function purgeSmallerDuplicates(result) {

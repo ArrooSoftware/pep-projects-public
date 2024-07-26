@@ -33,13 +33,13 @@ function convertText(message, minSegmentLength) {
 	var worker = new Worker("worker.js");
 	setIsBusy(true);
 
-	var results;
-
 	worker.addEventListener("message", function (e) {
-		results = e.data;
-		console.log(e.data);
-		outputTextArea.value = e.data;
-		setIsBusy(false);
+		outputParams = JSON.parse(e.data);
+
+		if (outputParams.done) {
+			outputTextArea.value = outputParams.result;
+			setIsBusy(false);
+		}
 	});
 
 	var inputParams = JSON.stringify({ message, minSegmentLength });
