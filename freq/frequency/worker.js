@@ -32,17 +32,11 @@ function getTextFrequency(message, minSegmentLength, reportProgress) {
 
 	// For each possible segment length
 	for (let segmentLength = 0; segmentLength < maxSegmentLength; segmentLength++) {
-		//console.log("segment length: " + segmentlength);
-
 		// For each possible segment position
 		for (let segmentStart = 0; segmentStart < words.length - segmentLength; segmentStart++) {
-			//console.log("segment start: " + segmentstart);
-
 			const segmentEnd = segmentStart + segmentLength;
 
 			key = words.slice(segmentStart, segmentEnd + 1).join(" ");
-
-			console.log("new key: " + words.slice(segmentStart, segmentEnd + 1).join(" "));
 
 			//only add if at least 6 7 characters in length
 			if (key.length >= minSegmentLength) {
@@ -59,14 +53,12 @@ function getTextFrequency(message, minSegmentLength, reportProgress) {
 
 	//remove marked for deletion items
 	result = result.filter((x) => x[1] > 0);
+
 	//sort by highest occurrence to lowest
 	result = result.sort((x, y) => y[1] - x[1]);
+
 	//put a comma between the two parts, put a line between each segment
 	result = result.map((x) => x.join(", ")).join("\n");
-
-	//console.clear();
-	console.log("result: " + result);
-	//console.log("-" + text + "-");
 
 	reportProgress({ result, doneRatio: 1, done: true });
 }
@@ -77,14 +69,10 @@ function purgeSmallerDuplicates(result) {
 
 	//for each result
 	for (let i = 0; i < result.length; i++) {
-		console.log("i: " + result[i][0]);
 		//check against every smaller result
 		for (let m = i + 1; m < result.length; m++) {
-			console.log("m: " + result[m][0]);
-
 			//if the smaller result hasn't already been scheduled for deletion, and it exists in the larger result, and they share the same count
 			if (result[m][1] != 0 && result[i][0].includes(result[m][0]) && result[m][1] == result[i][1]) {
-				console.log("scheduled for deletion: " + result[m][0]);
 				result[m][1] = 0; //mark it for deletion
 			}
 		}
@@ -123,8 +111,6 @@ function tidyString(text) {
 
 	//trim leading and following spaces - this has to be after any replacements with spaces
 	text = text.trim();
-
-	console.log("normalized: " + text);
 
 	return text;
 }
