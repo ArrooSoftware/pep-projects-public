@@ -40,6 +40,7 @@ function freeze(args) {
 function convertText(message, minSegmentLength) {
 	var progressBar = document.getElementById("progressBar");
 	progressBar.value = 0;
+	outputTextArea.value = "";
 
 	// Freeze the controls first, so user can't start simultaneous jobs.
 	freeze({ freezeControls: true, freezeAppearance: false });
