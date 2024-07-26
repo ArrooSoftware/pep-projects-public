@@ -43,6 +43,7 @@ function getTextFrequency(message, minSegmentLength, reportProgress) {
 				addToDictionary(key);
 			}
 		}
+		reportProgress({ result: "", doneRatio: (segmentLength + 2) / maxSegmentLength, done: false });
 	}
 
 	//remove results that only occur once

@@ -30,6 +30,9 @@ function setIsBusy(isBusy) {
 }
 
 function convertText(message, minSegmentLength) {
+	var progressBar = document.getElementById("progressBar");
+	progressBar.value = 0;
+
 	var worker = new Worker("worker.js");
 	setIsBusy(true);
 
@@ -39,6 +42,8 @@ function convertText(message, minSegmentLength) {
 		if (outputParams.done) {
 			outputTextArea.value = outputParams.result;
 			setIsBusy(false);
+		} else {
+			progressBar.value = outputParams.doneRatio;
 		}
 	});
 
