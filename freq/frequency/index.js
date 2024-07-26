@@ -12,38 +12,54 @@ window.addEventListener("load", function () {
 	setDefaultInputText();
 });
 
-function setIsBusy(isBusy) {
+var freezeAppearanceIfJobTakesLongerThanThisSeconds = 0.5;
+var freezeOpacity = 0.2;
+
+function freeze(args) {
+	var freezeControls = args.freezeControls;
+	var freezeAppearance = args.freezeAppearance;
+
 	// Get elements.
 	var inputTextArea = document.getElementById("inputTextArea");
 	var outputTextArea = document.getElementById("outputTextArea");
 	var progressBar = document.getElementById("progressBar");
 
 	// Freeze input when busy.
-	inputTextArea.readOnly = isBusy;
+	inputTextArea.readOnly = freezeControls;
 
 	// Grey-out input+output when busy.
-	inputTextArea.style.opacity = isBusy ? 0.2 : 1.0;
-	outputTextArea.style.opacity = isBusy ? 0.2 : 1.0;
+	inputTextArea.style.opacity = freezeAppearance ? freezeOpacity : 1.0;
+	outputTextArea.style.opacity = freezeAppearance ? freezeOpacity : 1.0;
 
 	// Show progress bar when busy.
-	progressBar.style.opacity = isBusy ? 1.0 : 0.0;
+	progressBar.style.opacity = freezeAppearance ? 1.0 : 0.0;
 }
 
 function convertText(message, minSegmentLength) {
 	var progressBar = document.getElementById("progressBar");
 	progressBar.value = 0;
 
+	// Freeze the controls first, so user can't start simultaneous jobs.
+	freeze({ freezeControls: true, freezeAppearance: false });
+
 	var worker = new Worker("worker.js");
-	setIsBusy(true);
+	var startDate = Date.now();
 
 	worker.addEventListener("message", function (e) {
 		outputParams = JSON.parse(e.data);
 
 		if (outputParams.done) {
 			outputTextArea.value = outputParams.result;
-			setIsBusy(false);
+
+			// Job complete, so unfreeze everything.
+			freeze({ freezeControls: false, freezeAppearance: false });
 		} else {
 			progressBar.value = outputParams.doneRatio;
+			var elapsedDate = Date.now();
+			msElapsed = elapsedDate - startDate;
+
+			// Job in-progress, freeze as appropriate.
+			freeze({ freezeControls: true, freezeAppearance: msElapsed > freezeAppearanceIfJobTakesLongerThanThisSeconds * 1000 });
 		}
 	});
 
