@@ -23,9 +23,11 @@ function freeze(args) {
 	var inputTextArea = document.getElementById("inputTextArea");
 	var outputTextArea = document.getElementById("outputTextArea");
 	var progressBar = document.getElementById("progressBar");
+	var optionsFieldSet = document.getElementById("optionsFieldSet");
 
 	// Freeze input when busy.
 	inputTextArea.readOnly = freezeControls;
+	optionsFieldSet.disabled = freezeControls;
 
 	// Grey-out input+output when busy.
 	inputTextArea.style.opacity = freezeAppearance ? freezeOpacity : 1.0;
