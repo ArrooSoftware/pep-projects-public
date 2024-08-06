@@ -14,3 +14,9 @@ jobs:
         uses: actions/checkout@v4
       - name: Run builder
         run: ./run.ps1
+      - name: Commit report
+        run: |
+          git config --global user.name 'Your Name'
+          git config --global user.email 'your-username@users.noreply.github.com'
+          git commit -am "Automated report"
+          git push
