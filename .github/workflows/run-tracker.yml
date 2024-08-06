@@ -1,0 +1,11 @@
+name: Run Tracker
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Run builder
+        shell: cmd
+        run: tracker\test.bat
