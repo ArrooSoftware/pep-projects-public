@@ -8,4 +8,4 @@ jobs:
     steps:
       - name: Run builder
         shell: cmd
-        run: tracker\test.bat
+        run: ./tracker/test.bat
