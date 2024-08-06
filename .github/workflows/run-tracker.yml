@@ -1,11 +1,15 @@
-name: Run Tracker
+name: Build Code
 on:
+  # From push
   push:
+    branches-ignore:
+      - "nobuild**" # For escaping automated builds, e.g. when we don't want to use up build time quota
+  # From manual run from Github Actions page
   workflow_dispatch:
 jobs:
   build:
     runs-on: windows-latest
     steps:
       - name: Run builder
-        shell: cmd
-        run: ./tracker/test.bat
+        run: >
+          .\\tracker\\run.ps1
