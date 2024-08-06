@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Run builder
-        run: ./run.ps1
+        run: ./tracker/run.ps1
       - name: Commit report
         run: |
           git config --global user.name 'Your Name'
