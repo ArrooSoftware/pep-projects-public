@@ -10,5 +10,5 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      - name: Run builder
-        run: ./run.ps1
+    - name: Run builder
+      run: ./run.ps1
