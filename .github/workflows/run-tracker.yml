@@ -11,4 +11,4 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Run builder
-        run: .\\tracker\\run.ps1
+        run: .\\run.ps1
