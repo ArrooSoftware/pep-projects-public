@@ -6,6 +6,8 @@ on:
       - "nobuild**" # For escaping automated builds, e.g. when we don't want to use up build time quota
   # From manual run from Github Actions page
   workflow_dispatch:
+permissions:
+  contents: write
 jobs:
   build:
     runs-on: windows-latest
@@ -18,8 +20,6 @@ jobs:
         run: |
           git config --global user.name 'Your Name'
           git config --global user.email 'your-username@users.noreply.github.com'
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/ArrooSoftware/pep-projects-public
-          git checkout "${GITHUB_REF:11}"
           git add .
           git commit -am "Automated report"
           git push
